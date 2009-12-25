@@ -1,0 +1,8 @@
+application: timeshift-robot
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /_gadget
+  static_dir: _gadget
