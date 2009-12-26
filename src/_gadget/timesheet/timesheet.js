@@ -53,7 +53,18 @@ function formatTime(t){
 		return '';
 	}
 
-	return t.h + ':' + t.m;
+	var s = '';
+
+	s += t.h;
+	s += ':';
+
+	if(t.m < 10){
+		s += '0';
+	}
+
+	s += t.m;
+
+	return s;
 }
 
 function appendRow(){
