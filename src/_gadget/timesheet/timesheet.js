@@ -29,10 +29,14 @@ function appendRow(){
 	html += renderElement('td', '<input type="text" />');
 	html += renderElement('td', '<input type="text" />');
 	html += renderElement('td', '<input type="text" />');
-	html += renderElement('td', '<input value="-" type="button" />');
+	html += renderElement('td', '<input value="-" type="button" onclick="javascript:removeRow(this);"/>');
 	html += '</tr>';
 
 	$('table.sheet tbody').append(html);
+}
+
+function removeRow(button){
+	$(button).closest('tr').remove();
 }
 
 function stateCallback(callback, opt_context){
