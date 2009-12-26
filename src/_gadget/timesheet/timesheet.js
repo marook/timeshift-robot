@@ -24,11 +24,11 @@ function appendRow(){
 	var html = '';
 	html += '<tr>';
 	// TODO escape lastEnd
-	html += renderElement('td', '<input type="text" class="begin" value="' + lastEnd + '"/>');
-	html += renderElement('td', '<input type="text" class="end"/>');
-	html += renderElement('td', '<input type="text" />');
-	html += renderElement('td', '<input type="text" />');
-	html += renderElement('td', '<input type="text" />');
+	html += renderElement('td', '<input type="text" class="begin" size="6" value="' + lastEnd + '"/>');
+	html += renderElement('td', '<input type="text" class="end" size="6"/>');
+	html += renderElement('td', '<input type="text" class="duration" size="5" readonly/>');
+	html += renderElement('td', '<input type="text" class="category" size="10"/>');
+	html += renderElement('td', '<textarea type="text" class="description" cols="20" rows="3"/>');
 	html += renderElement('td', '<input value="-" type="button" onclick="javascript:removeRow(this);"/>');
 	html += '</tr>';
 
@@ -37,6 +37,9 @@ function appendRow(){
 
 function removeRow(button){
 	$(button).closest('tr').remove();
+}
+
+function updateDuration(){
 }
 
 function stateCallback(callback, opt_context){

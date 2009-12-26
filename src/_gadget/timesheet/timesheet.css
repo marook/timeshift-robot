@@ -2,3 +2,11 @@ table.sheet, table.sheet th, table.sheet td{
     border: thin solid gray;
     border-spacing: 0px;
 }
+
+table.sheet th{
+    font-size: 9pt;
+}
+
+table.sheet td{
+    vertical-align: top;
+}
