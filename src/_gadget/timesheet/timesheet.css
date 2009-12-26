@@ -1,1 +1,5 @@
 
+table.sheet, table.sheet th, table.sheet td{
+    border: thin solid gray;
+    border-spacing: 0px;
+}
