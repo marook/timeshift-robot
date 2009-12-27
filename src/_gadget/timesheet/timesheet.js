@@ -161,6 +161,7 @@ function appendRow(){
 	var rowId = generateUID();
 
 	appendRowHtml(rowId);
+	gadgets.window.adjustHeight();
 
 	// append row in wave state
 	var rowIds = wave.getState().get('rows');
@@ -181,6 +182,7 @@ function removeRow(button){
 	var removedRowId = getValue('id', row);
 
 	row.remove();
+	gadgets.window.adjustHeight();
 
 	var rowIdsValue = wave.getState().get('rows');
 	if(!rowIdsValue){
@@ -242,6 +244,8 @@ function onRowsChanged(newRows){
 			appendRowHtml(rowId);
 		}
 	}
+
+	gadgets.window.adjustHeight();
 }
 
 function stateCallback(newState){
@@ -260,6 +264,8 @@ function stateCallback(newState){
 
 function init() {
 	$(document).ready(function(){
+			gadgets.window.adjustHeight();
+
 			$('#add_row').click(function(){
 					appendRow();
 				});

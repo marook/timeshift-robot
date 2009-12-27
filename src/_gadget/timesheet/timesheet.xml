@@ -20,6 +20,7 @@
 <Module>
   <ModulePrefs title="timesheet">
     <Require feature="wave" /> 
+    <Require feature="dynamic-height" />
   </ModulePrefs>
   <Content type="html">
     <![CDATA[
