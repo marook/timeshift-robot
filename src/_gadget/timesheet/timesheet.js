@@ -25,15 +25,27 @@ TIME_PATTERN = /\s*(\d+)\s*:\s*(\d+)\s*/;
 visibleRows = {};
 
 function getLastRowValue(type){
-	return $('table.sheet tbody tr:last input.' + type).val();
+	var sel = '';
+	sel += 'table.sheet tbody tr:last input.' + type;
+	sel += ', table.sheet tbody tr:last textarea.' + type;
+
+	return $(sel).val();
 }
 
 function getValue(type, row){
-	return $('input.' + type, row).val();
+	var sel = '';
+	sel += 'input.' + type;
+	sel += ', textarea.' + type;
+
+	return $(sel, row).val();
 }
 
 function setValue(type, row, value){
-	$('input.' + type, row).val(value);
+	var sel = '';
+	sel += 'input.' + type;
+	sel += ', textarea.' + type;
+
+	$(sel, row).val(value);
 }
 
 function getTime(type, row){
@@ -148,7 +160,7 @@ function appendRowHtml(rowId){
 	html += renderElement('td', '<input type="text" class="end" size="6" onchange="javascript:updateDuration(this);submitValue(this, \'end\');" value="' + getStateValue('end') + '"/>');
 	html += renderElement('td', '<input type="text" class="duration" size="5" readonly/>');
 	html += renderElement('td', '<input type="text" class="category" size="10" onchange="javascript:submitValue(this, \'category\');" value="' + getStateValue('category') + '"/>');
-	html += renderElement('td', '<a href="#" onclick="javascript:toggleDescription(this);return false;">&gt;</a><div><textarea type="text" class="description" cols="20" rows="3" onchange="javascript:submitValue(this, \'description\');" value="' + getStateValue('description') + '"/></div>');
+	html += renderElement('td', '<a href="#" onclick="javascript:toggleDescription(this);return false;">&gt;</a><textarea type="text" class="description" cols="20" rows="3" onchange="javascript:submitValue(this, \'description\');">' + getStateValue('description') + '</textarea>');
 	html += renderElement('td', '<input value="-" type="button" onclick="javascript:removeRow(this);"/><input type="hidden" class="id" value="' + rowId + '"/>');
 	html += '</tr>';
 
@@ -159,7 +171,7 @@ function appendRowHtml(rowId){
 
 function toggleDescription(rowElement){
 	var row = $(rowElement).closest('tr');
-	var description = $('div textarea.description', row);
+	var description = $('textarea.description', row);
 	description.toggle('fold', {}, 500, function(){
 			gadgets.window.adjustHeight();
 		});
