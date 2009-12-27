@@ -155,7 +155,7 @@ function appendRowHtml(rowId){
 	// append row in html dom
 	var html = '';
 	html += '<tr>';
-	// TODO escape lastEnd
+	// TODO escape dynamic values
 	html += renderElement('td', '<input type="text" class="begin" size="6" value="' + getStateValue('begin', lastEnd) + '" onchange="javascript:updateDuration(this);submitValue(this, \'begin\');"/>');
 	html += renderElement('td', '<input type="text" class="end" size="6" onchange="javascript:updateDuration(this);submitValue(this, \'end\');" value="' + getStateValue('end') + '"/>');
 	html += renderElement('td', '<input type="text" class="duration" size="5" readonly/>');
@@ -251,6 +251,12 @@ function updateDuration(rowElement){
 	}
 }
 
+function updateDurations(){
+	$('table.sheet tbody tr').each(function(rowIndex, row){
+			updateDuration(row);
+		});
+}
+
 function onRowsChanged(newRows){
 	var rowIds = newRows.split(',');
 	var i;
@@ -266,6 +272,8 @@ function onRowsChanged(newRows){
 	}
 
 	gadgets.window.adjustHeight();
+
+	updateDurations();
 }
 
 function stateCallback(newState){
