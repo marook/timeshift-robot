@@ -1,0 +1,17 @@
+1) Usage
+2) Build
+
+---------------------------------------------------------------------------
+ Usage
+
+The current version of the timeshift gadget is deployed on google appspot. The
+timesheet gadget is available at this URL:
+
+http://timeshift-robot.appspot.com/_gadget/timesheet/timesheet.xml
+
+---------------------------------------------------------------------------
+ Build
+
+To build use make:
+
+$ make build
