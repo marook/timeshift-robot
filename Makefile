@@ -41,8 +41,11 @@ target/_gadget: target
 target/_gadget/timesheet: target/_gadget
 	mkdir -- "$@"
 
-target/_gadget/timesheet/timesheet.xml: target/_gadget/timesheet src/_gadget/timesheet/timesheet.xml src/_gadget/timesheet/timesheet.html src/_gadget/timesheet/timesheet.css src/_gadget/timesheet/timesheet.js
-	replace '@@timesheet.js@@' "`cat src/_gadget/timesheet/timesheet.js`" '@@timesheet.html@@' "`cat src/_gadget/timesheet/timesheet.html`" '@@timesheet.css@@' "`cat src/_gadget/timesheet/timesheet.css`" < "src/_gadget/timesheet/timesheet.xml" > "$@"
+src/_gadget/timesheet/timesheet-min.js: src/_gadget/timesheet/timesheet.js
+	python "bin/jsmin.py" < "$^" > "$@"
+
+target/_gadget/timesheet/timesheet.xml: target/_gadget/timesheet src/_gadget/timesheet/timesheet.xml src/_gadget/timesheet/timesheet.html src/_gadget/timesheet/timesheet.css src/_gadget/timesheet/timesheet-min.js
+	replace '@@timesheet.js@@' "`cat src/_gadget/timesheet/timesheet-min.js`" '@@timesheet.html@@' "`cat src/_gadget/timesheet/timesheet.html`" '@@timesheet.css@@' "`cat src/_gadget/timesheet/timesheet.css`" < "src/_gadget/timesheet/timesheet.xml" > "$@"
 
 target/app.yaml: src/app.yaml target
 	cp -- src/app.yaml "$@"
