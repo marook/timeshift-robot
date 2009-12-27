@@ -1,6 +1,9 @@
-table.sheet{
-    padding: 2px;
+table.sheet thead{
     text-align: left;
+}
+
+table.sheet td, table.sheet th{
+    padding: 3px;
 }
 
 table.sheet thead{
