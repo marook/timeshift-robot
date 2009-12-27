@@ -148,13 +148,21 @@ function appendRowHtml(rowId){
 	html += renderElement('td', '<input type="text" class="end" size="6" onchange="javascript:updateDuration(this);submitValue(this, \'end\');" value="' + getStateValue('end') + '"/>');
 	html += renderElement('td', '<input type="text" class="duration" size="5" readonly/>');
 	html += renderElement('td', '<input type="text" class="category" size="10" onchange="javascript:submitValue(this, \'category\');" value="' + getStateValue('category') + '"/>');
-	html += renderElement('td', '<textarea type="text" class="description" cols="20" rows="3" onchange="javascript:submitValue(this, \'description\');" value="' + getStateValue('description') + '"/>');
+	html += renderElement('td', '<a href="#" onclick="javascript:toggleDescription(this);return false;">&gt;</a><div><textarea type="text" class="description" cols="20" rows="3" onchange="javascript:submitValue(this, \'description\');" value="' + getStateValue('description') + '"/></div>');
 	html += renderElement('td', '<input value="-" type="button" onclick="javascript:removeRow(this);"/><input type="hidden" class="id" value="' + rowId + '"/>');
 	html += '</tr>';
 
 	visibleRows[rowId] = true;
 
 	$('table.sheet tbody').append(html);
+}
+
+function toggleDescription(rowElement){
+	var row = $(rowElement).closest('tr');
+	var description = $('div textarea.description', row);
+	description.toggle('fold', {}, 500, function(){
+			gadgets.window.adjustHeight();
+		});
 }
 
 function appendRow(){
