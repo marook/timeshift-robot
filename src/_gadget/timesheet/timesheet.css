@@ -1,10 +1,11 @@
-table.sheet, table.sheet th, table.sheet td{
-    border: thin solid gray;
-    border-spacing: 0px;
+table.sheet{
+    padding: 2px;
+    text-align: left;
 }
 
-table.sheet th{
+table.sheet thead{
     font-size: 9pt;
+    background-color: #C9E2FC;
 }
 
 table.sheet td{
